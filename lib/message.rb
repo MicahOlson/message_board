@@ -15,7 +15,12 @@ class Message
     @@messages.values
   end
 
-  # def save
-  #   @@messages[self.post_id] = Message.new(self.user_post, self.user, self.post_id)
-  # end
+  def save
+    @@messages[self.post_id] = Message.new({:user_post => self.user_post, :user => self.user, :post_id => self.post_id})
+  end
+
+  def ==(compare_post)
+    self.user_post = compare_post.user_post
+  end
+
 end
