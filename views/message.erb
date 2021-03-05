@@ -1,0 +1,9 @@
+<h4><%= "#{@message.user} posted #{@message.title}" %></h4>
+<p><%= @message.user_post %></p>
+<footer><a href="/messages">back</a></footer>
+<form action="/messages/<%= @message.id() %>" method="post">
+  <div class="form-group">
+    <input class="form-control" name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn">Delete post</button>
+  </div>
+</form>

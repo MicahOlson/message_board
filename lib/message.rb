@@ -32,4 +32,8 @@ class Message
   def self.find(id)
     @@messages[id]
   end
+
+  def delete
+    @@messages.delete(self.id)
+  end
 end

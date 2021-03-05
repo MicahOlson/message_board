@@ -29,6 +29,12 @@ post('/messages') do
 end
 
 get('/messages/:id') do
-  @messages = Message.find(params[:id].to_i())
-  erb(:album)
+  @message = Message.find(params[:id].to_i())
+  erb(:message)
+end
+
+delete('/messages/:id') do
+  @message = Message.find(params[:id].to_i())
+  @message.delete()
+  redirect to('/messages')
 end

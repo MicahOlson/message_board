@@ -59,4 +59,15 @@ describe '#Message' do
       expect(Message.find(message.id)).to(eq(message))
     end
   end
+
+  describe('#delete') do
+    it("deletes a message by id") do
+      message = Message.new({:user_post => "Hello humans!", :title => "F Society", :user => "Mr. Robot", :id => nil})
+      message.save
+      message2 = Message.new({:user_post => "Hello to you too fellow human", :title => "Kill All Humans", :user => "Bender", :id => nil})
+      message2.save
+      message.delete()
+      expect(Message.all).to(eq([message2]))
+    end
+  end
 end
