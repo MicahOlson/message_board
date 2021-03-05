@@ -1,14 +1,15 @@
 class Message
-  attr_accessor :user_post, :user 
-  attr_reader :post_id
+  attr_accessor :user_post, :title, :user 
+  attr_reader :id
 
   @@messages = {}
-  @@id = 0
+  @@total_rows = 0
 
   def initialize(attributes)
-    @user_post = attributes.fetch(:user_post)
     @user = attributes.fetch(:user)
-    @post_id = attributes.fetch(:post_id) || @@id += 1
+    @title = attributes.fetch(:title)
+    @user_post = attributes.fetch(:user_post)
+    @id = attributes.fetch(:id) || @@total_rows += 1
   end
 
   def self.all
@@ -16,7 +17,7 @@ class Message
   end
 
   def save
-    @@messages[self.post_id] = Message.new({:user_post => self.user_post, :user => self.user, :post_id => self.post_id})
+    @@messages[self.id] = Message.new({:user_post => self.user_post, :title => self.title, :user => self.user, :id => self.id})
   end
 
   def ==(compare_post)
@@ -25,6 +26,10 @@ class Message
 
   def self.clear
     @@messages = {}
-    @@id = 0
+    @@total_rows = 0
+  end
+
+  def self.find(id)
+    @@messages[id]
   end
 end
