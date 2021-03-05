@@ -23,4 +23,8 @@ class Message
     self.user_post = compare_post.user_post
   end
 
+  def self.clear
+    @@messages = {}
+    @@id = 0
+  end
 end
